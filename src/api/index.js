@@ -23,4 +23,12 @@ api.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+api.interceptors.response.use(
+    function (config) {
+        return config;
+    },
+    function (error) {
+        return Promise.reject(error.response.data);
+    }
+);
 export default api;

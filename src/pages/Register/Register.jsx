@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { REGISTER_REQUEST } from '../../store/reducer/user/userActionTypes';
 
 function Register() {
-  const { user, loading } = useSelector((state) => state.user);
+  const { user, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   if (user) {
@@ -17,11 +17,16 @@ function Register() {
     dispatch({ type: REGISTER_REQUEST, payload: data });
   };
 
+  console.log(error);
+
   return (
     <div className={styles['container']}>
       <div className={styles['form-container']}>
         <h1>Register</h1>
-        <RegisterForm handleSubmit={handleLogin} isLoading={loading}></RegisterForm>
+        <RegisterForm
+          handleSubmit={handleLogin}
+          isLoading={loading}
+          submitError={error?.message}></RegisterForm>
         <p>
           Already had an account? <Link to={'/login'}>Login</Link>
         </p>

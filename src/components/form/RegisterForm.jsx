@@ -2,7 +2,7 @@ import { Button, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react';
 
-function RegisterForm({ handleSubmit, isLoading }) {
+function RegisterForm({ handleSubmit, isLoading, submitError }) {
   const [inputs, setInputs] = useState({
     email: '',
     password: ''
@@ -60,6 +60,7 @@ function RegisterForm({ handleSubmit, isLoading }) {
           label="Password"
           variant="outlined"></TextField>
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
         {isLoading ? (
           <Button type="submit" variant="contained" disabled>
             Register

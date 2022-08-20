@@ -2,12 +2,12 @@ import { Button, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react';
 
-function LoginForm({ handleSubmit, isLoading }) {
+function LoginForm({ handleSubmit, isLoading, submitError }) {
   const [inputs, setInputs] = useState({
     email: '',
     password: ''
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -42,6 +42,7 @@ function LoginForm({ handleSubmit, isLoading }) {
           label="Password"
           variant="outlined"></TextField>
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
         {isLoading ? (
           <Button type="submit" variant="contained" disabled>
             Login

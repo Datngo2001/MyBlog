@@ -6,13 +6,13 @@ import { SIGNIN_REQUEST } from '../../store/reducer/user/userActionTypes';
 import styles from './login.module.css';
 
 function Login() {
-  const { user, loading } = useSelector((state) => state.user);
+  const { user, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   if (user) {
     return <Navigate to={'/'}></Navigate>;
   }
 
-  const handleRegister = (data) => {
+  const handleLogin = (data) => {
     dispatch({ type: SIGNIN_REQUEST, payload: data });
   };
 
@@ -20,7 +20,10 @@ function Login() {
     <div className={styles['container']}>
       <div className={styles['form-container']}>
         <h1>Login</h1>
-        <LoginForm handleSubmit={handleRegister} isLoading={loading}></LoginForm>
+        <LoginForm
+          handleSubmit={handleLogin}
+          isLoading={loading}
+          submitError={error?.message}></LoginForm>
         <p>
           Did not have an account yet? <Link to={'/register'}>Register</Link>
         </p>
