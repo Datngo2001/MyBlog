@@ -1,3 +1,5 @@
+import { Button, TextField } from '@mui/material';
+import { Stack } from '@mui/system';
 import React, { useState } from 'react';
 
 function LoginForm({ handleSubmit, isLoading }) {
@@ -24,42 +26,31 @@ function LoginForm({ handleSubmit, isLoading }) {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="mb-3">
-        <label htmlFor="emailInput" className="form-label">
-          Email Address
-        </label>
-        <input
+      <Stack spacing={2}>
+        <TextField
           name="email"
-          type="text"
-          className="form-control"
-          id="emailInput"
           value={inputs.email || ''}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="passwordInput" className="form-label">
-          Password
-        </label>
-        <input
+          label="Email Address"
+          variant="outlined"
+          onChange={handleChange}></TextField>
+        <TextField
           name="password"
           type="password"
-          className="form-control"
-          id="passwordInput"
           value={inputs.password || ''}
           onChange={handleChange}
-        />
-      </div>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {isLoading ? (
-        <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      ) : (
-        <button type="submit" className="btn btn-primary">
-          Login
-        </button>
-      )}
+          label="Password"
+          variant="outlined"></TextField>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {isLoading ? (
+          <Button type="submit" variant="contained" disabled>
+            Login
+          </Button>
+        ) : (
+          <Button type="submit" variant="contained">
+            Login
+          </Button>
+        )}
+      </Stack>
     </form>
   );
 }

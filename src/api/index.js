@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from 'universal-cookie';
 
-const API_ENDPOINT = "http://localhost:3005/api";
+const API_ENDPOINT = "http://localhost:3001/";
 const cookies = new Cookies();
 
 function getToken() {
