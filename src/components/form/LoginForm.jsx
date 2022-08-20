@@ -29,6 +29,7 @@ function LoginForm({ handleSubmit, isLoading }) {
       <Stack spacing={2}>
         <TextField
           name="email"
+          type="email"
           value={inputs.email || ''}
           label="Email Address"
           variant="outlined"

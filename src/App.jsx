@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
+import Setting from './pages/Setting/Setting';
 import Navbar from './layout/Navbar';
 
 const cookies = new Cookies();
@@ -33,10 +34,18 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
-            path="/profile"
+            path="/profile/:id"
             element={
               <ProtectedRoute condition={user} redirectPath="/">
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/setting"
+            element={
+              <ProtectedRoute condition={user} redirectPath="/">
+                <Setting />
               </ProtectedRoute>
             }
           />

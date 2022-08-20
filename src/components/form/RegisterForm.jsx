@@ -46,6 +46,7 @@ function RegisterForm({ handleSubmit, isLoading }) {
     <form onSubmit={onSubmit}>
       <Stack spacing={2}>
         <TextField
+          type="email"
           name="email"
           value={inputs.email || ''}
           label="Email Address"
