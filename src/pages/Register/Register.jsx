@@ -17,8 +17,6 @@ function Register() {
     dispatch({ type: REGISTER_REQUEST, payload: data });
   };
 
-  console.log(error);
-
   return (
     <div className={styles['container']}>
       <div className={styles['form-container']}>
@@ -26,7 +24,7 @@ function Register() {
         <RegisterForm
           handleSubmit={handleLogin}
           isLoading={loading}
-          submitError={error?.message}></RegisterForm>
+          submitError={error.register?.message}></RegisterForm>
         <p>
           Already had an account? <Link to={'/login'}>Login</Link>
         </p>

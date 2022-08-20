@@ -23,7 +23,7 @@ function Login() {
         <LoginForm
           handleSubmit={handleLogin}
           isLoading={loading}
-          submitError={error?.message}></LoginForm>
+          submitError={error.signin?.message}></LoginForm>
         <p>
           Did not have an account yet? <Link to={'/register'}>Register</Link>
         </p>

@@ -5,7 +5,7 @@ import { LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, RESTORE_U
 const init = {
     user: null,
     loading: false,
-    error: null
+    error: { signin: null, register: null }
 }
 
 const cookies = new Cookies();
@@ -13,20 +13,21 @@ const cookies = new Cookies();
 export default function userReducer(state = init, { type, payload }) {
     switch (type) {
         case RESTORE_USER:
-            return { loading: false, user: payload, error: null };
+            return { loading: false, user: payload, error: { signin: null, register: null } };
         case SIGNIN_REQUEST:
         case REGISTER_REQUEST:
-            return { loading: true, user: null, error: null };
+            return { loading: true, user: null, error: { signin: null, register: null } };
         case SIGNIN_FAILURE:
+            return { loading: false, user: null, error: { ...state.error, signin: payload } };
         case REGISTER_FAILURE:
-            return { loading: false, user: null, error: payload };
+            return { loading: false, user: null, error: { ...state.error, register: payload } };
         case SIGNIN_SUCCESS:
         case REGISTER_SUCCESS:
-            return { loading: false, user: payload, error: null };
+            return { loading: false, user: payload, error: { signin: null, register: null } };
         case LOGOUT:
             cookies.remove('token')
             cookies.remove('user')
-            return { loading: null, user: payload, error: null };
+            return { loading: null, user: payload, error: { signin: null, register: null } };
         default:
             return state;
     }
