@@ -1,6 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react';
+import PasswordTextFeild from '../PasswordTextFeild';
 
 function RegisterForm({ handleSubmit, isLoading, submitError }) {
   const [inputs, setInputs] = useState({
@@ -52,13 +53,13 @@ function RegisterForm({ handleSubmit, isLoading, submitError }) {
           label="Email Address"
           variant="outlined"
           onChange={handleChange}></TextField>
-        <TextField
+        <PasswordTextFeild
           name="password"
           type="password"
           value={inputs.password || ''}
           onChange={handleChange}
           label="Password"
-          variant="outlined"></TextField>
+          variant="outlined"></PasswordTextFeild>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
         {isLoading ? (
