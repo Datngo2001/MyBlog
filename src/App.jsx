@@ -10,6 +10,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
 import Setting from './pages/Setting/Setting';
+import EditArticle from './pages/EditArticle/EditArticle';
 import Navbar from './layout/Navbar';
 
 const cookies = new Cookies();
@@ -46,6 +47,14 @@ const App = () => {
             element={
               <ProtectedRoute condition={user} redirectPath="/">
                 <Setting />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-article/:id"
+            element={
+              <ProtectedRoute condition={user} redirectPath="/">
+                <EditArticle />
               </ProtectedRoute>
             }
           />
