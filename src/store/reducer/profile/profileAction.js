@@ -1,4 +1,4 @@
-import { call, put } from "file-loader";
+import { call, put } from 'redux-saga/effects';
 import { getProfile, putProfile } from "../../../api/user";
 import { LOAD_FAILURE, LOAD_SUCCESS } from "./profileActionTypes";
 
