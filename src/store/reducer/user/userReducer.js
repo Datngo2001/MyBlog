@@ -9,6 +9,7 @@ const init = {
 }
 
 const cookies = new Cookies();
+const MAX_AGE = 5000
 
 export default function userReducer(state = init, { type, payload }) {
     switch (type) {
@@ -23,11 +24,13 @@ export default function userReducer(state = init, { type, payload }) {
             return { loading: false, user: null, error: { ...state.error, register: payload } };
         case SIGNIN_SUCCESS:
         case REGISTER_SUCCESS:
-            return { loading: false, user: payload, error: { signin: null, register: null } };
+            cookies.set('token', payload.accessToken, { maxAge: MAX_AGE })
+            cookies.set('user', payload.user, { maxAge: MAX_AGE })
+            return { loading: false, user: payload.user, error: { signin: null, register: null } };
         case LOGOUT:
             cookies.remove('token')
             cookies.remove('user')
-            return { loading: null, user: payload, error: { signin: null, register: null } };
+            return { loading: null, user: null, error: { signin: null, register: null } };
         default:
             return state;
     }

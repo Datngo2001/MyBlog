@@ -21,7 +21,8 @@ const App = () => {
 
   if (!user) {
     const prevUser = cookies.get('user');
-    if (prevUser) {
+    const prevToken = cookies.get('token');
+    if (prevUser && prevToken) {
       dispatch({ type: RESTORE_USER, payload: prevUser });
     }
   }

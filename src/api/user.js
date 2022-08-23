@@ -4,8 +4,8 @@ export function getProfile(id) {
     return api.get(`user/${id}`);
 }
 
-export function putProfile({ id, data }) {
-    return api.put(`user/${id}`, data)
+export function putProfile(data) {
+    return api.put('user', data)
 }
 
 export function register(payload) {

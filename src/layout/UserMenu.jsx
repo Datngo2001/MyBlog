@@ -2,9 +2,11 @@ import { Avatar, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/ma
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 function UserMenu({ items }) {
   const navigate = useNavigate();
+  const { profile } = useSelector((state) => state.profile);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -26,7 +28,7 @@ function UserMenu({ items }) {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar alt="avatar" src={profile?.avatar} />
         </IconButton>
       </Tooltip>
       <Menu

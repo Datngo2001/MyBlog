@@ -12,11 +12,12 @@ export default function profileReducer(state = init, { type, payload }) {
         case UPDATE_REQUEST:
             return { loading: true, profile: null, error: null };
         case LOAD_FAILURE:
-        case UPDATE_FAILURE:
             return { loading: false, profile: null, error: payload };
+        case UPDATE_FAILURE:
+            return { loading: false, profile: state.profile, error: payload };
         case LOAD_SUCCESS:
         case UPDATE_SUCCESS:
-            return { loading: false, user: payload, error: null };
+            return { loading: false, profile: payload, error: null };
         default:
             return state;
     }
