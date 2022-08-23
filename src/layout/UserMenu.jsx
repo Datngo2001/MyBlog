@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 function UserMenu({ items }) {
   const navigate = useNavigate();
-  const { profile } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.user);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -28,7 +28,7 @@ function UserMenu({ items }) {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="avatar" src={profile?.avatar} />
+          <Avatar alt="avatar" src={user?.avatar} />
         </IconButton>
       </Tooltip>
       <Menu
