@@ -62,7 +62,7 @@ function EditProfileForm() {
           multiline
           rows={5}
           maxRows={10}></TextField>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: 'red' }}>{error.message}</p>}
         {formError && <p style={{ color: 'red' }}>{formError}</p>}
         {loading ? (
           <Button type="submit" variant="contained" disabled>
