@@ -9,7 +9,7 @@ function EditButtonContent({ onClick }) {
       onClick={onClick}
       color="secondary"
       aria-label="edit"
-      sx={{ position: 'absolute', bottom: '2rem', right: '2rem' }}>
+      sx={{ position: 'fixed', bottom: '2rem', right: '2rem' }}>
       <ModeEditIcon />
     </Fab>
   );

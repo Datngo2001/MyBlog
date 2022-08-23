@@ -1,6 +1,4 @@
-import { UploadFile } from '@mui/icons-material';
-import { Avatar, Button, Stack, TextField } from '@mui/material';
-import { Container } from '@mui/system';
+import { Button, Stack, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_REQUEST } from '../../store/reducer/profile/profileActionTypes';
@@ -33,18 +31,13 @@ function EditProfileForm() {
   return (
     <form onSubmit={onSubmit}>
       <Stack spacing={2}>
-        <Avatar
-          alt="avatar"
-          src={inputs.avatar}
-          sx={{ width: 100, height: 100, margin: 'auto' }}></Avatar>
-        <Container sx={{ textAlign: 'center' }}>
-          <Button
-            variant="outlined"
-            startIcon={<UploadFile />}
-            sx={{ maxWidth: 120, margin: 'auto' }}>
-            Upload
-          </Button>
-        </Container>
+        <TextField
+          name="avatar"
+          type="text"
+          value={inputs.avatar || ''}
+          label="Avatar link"
+          variant="outlined"
+          onChange={handleChange}></TextField>
         <TextField
           name="username"
           type="text"

@@ -1,4 +1,3 @@
-import { UploadFile } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
 import { Container, Stack } from '@mui/system';
 import React, { useCallback, useState } from 'react';
@@ -43,17 +42,13 @@ function ArticleForm({ data = init, handleSubmit, isLoading }) {
   return (
     <form onSubmit={onSubmit}>
       <Stack spacing={2} sx={{ paddingTop: 5, paddingBottom: 5 }}>
-        <Container sx={{ textAlign: 'center', height: 200 }}>
-          <img src={data.thumbnail} alt="img" />
-        </Container>
-        <Container sx={{ textAlign: 'center' }}>
-          <Button
-            variant="outlined"
-            startIcon={<UploadFile />}
-            sx={{ maxWidth: 120, margin: 'auto' }}>
-            Upload
-          </Button>
-        </Container>
+        <TextField
+          name="thumbnail"
+          type="text"
+          value={inputs.thumbnail || ''}
+          label="Thumbnail link"
+          variant="outlined"
+          onChange={handleChange}></TextField>
         <TextField
           name="title"
           type="text"
