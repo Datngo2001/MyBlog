@@ -62,15 +62,9 @@ function RegisterForm({ handleSubmit, isLoading, submitError }) {
           variant="outlined"></PasswordTextFeild>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
-        {isLoading ? (
-          <Button type="submit" variant="contained" disabled>
-            Register
-          </Button>
-        ) : (
-          <Button type="submit" variant="contained">
-            Register
-          </Button>
-        )}
+        <Button type="submit" variant="contained" disabled={isLoading}>
+          Save
+        </Button>
       </Stack>
     </form>
   );

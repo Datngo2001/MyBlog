@@ -44,15 +44,9 @@ function LoginForm({ handleSubmit, isLoading, submitError }) {
           variant="outlined"></PasswordTextFeild>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
-        {isLoading ? (
-          <Button type="submit" variant="contained" disabled>
-            Login
-          </Button>
-        ) : (
-          <Button type="submit" variant="contained">
-            Login
-          </Button>
-        )}
+        <Button type="submit" variant="contained" disabled={isLoading}>
+          Save
+        </Button>
       </Stack>
     </form>
   );

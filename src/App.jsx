@@ -11,7 +11,9 @@ import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
 import Setting from './pages/Setting/Setting';
 import EditArticle from './pages/EditArticle/EditArticle';
+import CreateArticle from './pages/CreateArticle/CreateArticle';
 import Navbar from './layout/Navbar';
+import ViewArticle from './pages/ViewArticle/ViewArticle';
 
 const cookies = new Cookies();
 
@@ -52,7 +54,23 @@ const App = () => {
             }
           />
           <Route
-            path="/edit-article/:id"
+            path="/article/:id"
+            element={
+              <ProtectedRoute condition={user} redirectPath="/">
+                <ViewArticle />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/article/create"
+            element={
+              <ProtectedRoute condition={user} redirectPath="/">
+                <CreateArticle />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/article/:id/edit"
             element={
               <ProtectedRoute condition={user} redirectPath="/">
                 <EditArticle />
