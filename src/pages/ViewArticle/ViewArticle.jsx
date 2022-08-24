@@ -5,11 +5,15 @@ import { useNavigate, useParams } from 'react-router';
 import { getArticleById } from '../../api/article';
 import { convertDate } from '../../util/convertDate';
 import styles from './view.module.css';
+import EditFloatButton from '../../components/EditFloatButton';
+import DeleteFloatButton from '../../components/DeleteFloatButton';
+import { useSelector } from 'react-redux';
 
 function ViewArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     getArticleById(id)
@@ -21,6 +25,10 @@ function ViewArticle() {
 
   const gotoAuthorProfile = () => {
     navigate(`/profile/${article.author._id}`);
+  };
+
+  const handleEditClick = () => {
+    navigate(`/article/${article?._id}/edit`);
   };
 
   return (
@@ -52,6 +60,12 @@ function ViewArticle() {
           </Typography>
         </Stack>
       </Stack>
+      {user?._id === article?.author._id ? (
+        <>
+          <DeleteFloatButton />
+          <EditFloatButton onClick={handleEditClick} />
+        </>
+      ) : null}
     </Container>
   );
 }
