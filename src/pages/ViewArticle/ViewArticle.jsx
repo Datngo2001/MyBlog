@@ -2,18 +2,20 @@ import { Avatar, Typography } from '@mui/material';
 import { Container, Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { getArticleById } from '../../api/article';
+import { deleteArticle, getArticleById } from '../../api/article';
 import { convertDate } from '../../util/convertDate';
 import styles from './view.module.css';
 import EditFloatButton from '../../components/EditFloatButton';
 import DeleteFloatButton from '../../components/DeleteFloatButton';
 import { useSelector } from 'react-redux';
+import ConfirmModal from '../../components/modal/ConfirmModal';
 
 function ViewArticle() {
   const { id } = useParams();
   const [article, setArticle] = useState();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getArticleById(id)
@@ -29,6 +31,21 @@ function ViewArticle() {
 
   const handleEditClick = () => {
     navigate(`/article/${article?._id}/edit`);
+  };
+
+  const handleDeleteClick = () => {
+    setOpen(true);
+  };
+
+  const handleAnswer = (result) => {
+    setOpen(false);
+    if (result == true) {
+      deleteArticle(id)
+        .then(() => {
+          navigate('/');
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -64,12 +81,17 @@ function ViewArticle() {
           </Stack>
           {user?._id === article?.author._id ? (
             <>
-              <DeleteFloatButton />
+              <DeleteFloatButton onClick={handleDeleteClick} />
               <EditFloatButton onClick={handleEditClick} />
             </>
           ) : null}
         </>
       )}
+      <ConfirmModal
+        message={'Are you sure to delete article?'}
+        open={open}
+        onAnswer={handleAnswer}
+      />
     </Container>
   );
 }
