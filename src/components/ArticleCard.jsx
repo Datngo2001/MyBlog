@@ -30,7 +30,7 @@ function ArticleCard({ article }) {
         onClick={handleCardClick}>
         <CardMedia
           component="img"
-          height="300"
+          height="250"
           image={article.thumbnail}
           alt={article.title}></CardMedia>
         <CardContent>

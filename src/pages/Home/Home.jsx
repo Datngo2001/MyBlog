@@ -22,7 +22,7 @@ function Home() {
   }, []);
 
   return (
-    <Container maxWidth="md" sx={{ paddingTop: 5 }}>
+    <Container maxWidth="sm" sx={{ paddingTop: 5 }}>
       <Stack spacing={4}>
         {articles.map((article) => (
           <ArticleCard key={article._id} article={article}></ArticleCard>
