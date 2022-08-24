@@ -17,7 +17,7 @@ export function postArticle(data) {
 }
 
 export function putArticle(id, data) {
-    return api.post(`/article/${id}`, data)
+    return api.put(`/article/${id}`, data)
 }
 
 export function deleteArticle(id) {

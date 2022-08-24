@@ -33,39 +33,43 @@ function ViewArticle() {
 
   return (
     <Container maxWidth="sm">
-      <Stack spacing={2} alignItems={'center'} sx={{ marginTop: 2 }}>
-        <img
-          style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-          src={article?.thumbnail}
-          alt={article?.title}
-        />
-        <Stack spacing={2}>
-          <div className={styles['author-container']}>
-            <div className={styles['author']}>
-              <Avatar
-                onClick={() => gotoAuthorProfile()}
-                style={{ cursor: 'pointer' }}
-                src={article?.author.avatar}
-                alt={article?.author.username || 'avartar'}></Avatar>
-              <Typography style={{ cursor: 'pointer' }} onClick={() => gotoAuthorProfile()}>
-                {article?.author.username || article?.author.email}
-              </Typography>
-            </div>
-            <Typography>{convertDate(article?.createDate)}</Typography>
-          </div>
-          <Typography variant="h4">{article?.title}</Typography>
-          <Typography variant="h6">{article?.subtitle}</Typography>
-          <Typography variant="body1" sx={{ lineHeight: 2, textAlign: 'justify' }}>
-            {article?.content}
-          </Typography>
-        </Stack>
-      </Stack>
-      {user?._id === article?.author._id ? (
+      {article && (
         <>
-          <DeleteFloatButton />
-          <EditFloatButton onClick={handleEditClick} />
+          <Stack spacing={2} alignItems={'center'} sx={{ marginTop: 2 }}>
+            <img
+              style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+              src={article?.thumbnail}
+              alt={article?.title}
+            />
+            <Stack spacing={2}>
+              <div className={styles['author-container']}>
+                <div className={styles['author']}>
+                  <Avatar
+                    onClick={() => gotoAuthorProfile()}
+                    style={{ cursor: 'pointer' }}
+                    src={article?.author.avatar}
+                    alt={article?.author.username || 'avartar'}></Avatar>
+                  <Typography style={{ cursor: 'pointer' }} onClick={() => gotoAuthorProfile()}>
+                    {article?.author.username || article?.author.email}
+                  </Typography>
+                </div>
+                <Typography>{convertDate(article?.createDate)}</Typography>
+              </div>
+              <Typography variant="h4">{article?.title}</Typography>
+              <Typography variant="h6">{article?.subtitle}</Typography>
+              <Typography variant="body1" sx={{ lineHeight: 2, textAlign: 'justify' }}>
+                {article?.content}
+              </Typography>
+            </Stack>
+          </Stack>
+          {user?._id === article?.author._id ? (
+            <>
+              <DeleteFloatButton />
+              <EditFloatButton onClick={handleEditClick} />
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
     </Container>
   );
 }

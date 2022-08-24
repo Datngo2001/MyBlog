@@ -66,7 +66,7 @@ function ArticleForm({ data = init, handleSubmit, isLoading }) {
           multiline
           rows={3}
           maxRows={10}></TextField>
-        <RichTextEditor handleBlur={handleContentChange}></RichTextEditor>
+        <RichTextEditor init={inputs.content} handleBlur={handleContentChange}></RichTextEditor>
         {formError && <p style={{ color: 'red' }}>{formError}</p>}
         <Container sx={{ textAlign: 'end' }}>
           <Button type="submit" variant="text" onClick={() => navigate('/')}>
