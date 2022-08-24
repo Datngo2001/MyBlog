@@ -53,14 +53,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/article/:id"
-            element={
-              <ProtectedRoute condition={user} redirectPath="/">
-                <ViewArticle />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/article/:id" element={<ViewArticle />} />
           <Route
             path="/article/create"
             element={
