@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import { API_URL } from "../config";
 
-const API_ENDPOINT = "http://localhost:3001/";
 const cookies = new Cookies();
 
 function getToken() {
@@ -11,7 +11,7 @@ function getToken() {
 }
 
 const api = axios.create({
-    baseURL: API_ENDPOINT,
+    baseURL: API_URL,
 });
 
 api.interceptors.request.use(
