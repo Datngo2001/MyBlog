@@ -27,6 +27,7 @@ function Home() {
     getArticles('', paging.page, paging.limit)
       .then((res) => {
         setArticles(res.data.articles);
+        setPaging((val) => ({ ...val, count: res.data.count }));
       })
       .catch((err) => console.log(err));
   }, []);
