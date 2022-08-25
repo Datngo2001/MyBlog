@@ -63,7 +63,7 @@ function RegisterForm({ handleSubmit, isLoading, submitError }) {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
         <Button type="submit" variant="contained" disabled={isLoading}>
-          Save
+          Register
         </Button>
       </Stack>
     </form>

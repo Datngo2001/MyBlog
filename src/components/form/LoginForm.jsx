@@ -45,7 +45,7 @@ function LoginForm({ handleSubmit, isLoading, submitError }) {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {submitError && <p style={{ color: 'red' }}>{submitError}</p>}
         <Button type="submit" variant="contained" disabled={isLoading}>
-          Save
+          Login
         </Button>
       </Stack>
     </form>
