@@ -6,5 +6,4 @@ if (NODE_ENV == 'development') {
 } else {
   apiurl = 'https://my-blog-fpt-api.herokuapp.com/';
 }
-
-export const { API_URL } = apiurl;
+export const API_URL = apiurl;

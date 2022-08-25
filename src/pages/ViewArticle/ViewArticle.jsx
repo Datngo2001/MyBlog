@@ -75,7 +75,7 @@ function ViewArticle() {
               <Typography variant="h4">{article?.title}</Typography>
               <Typography variant="h6">{article?.subtitle}</Typography>
               <Typography variant="body1" sx={{ lineHeight: 2, textAlign: 'justify' }}>
-                {article?.content}
+                <div dangerouslySetInnerHTML={{ __html: article?.content }} />
               </Typography>
             </Stack>
           </Stack>
