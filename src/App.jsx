@@ -38,14 +38,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/profile/:id"
-            element={
-              <ProtectedRoute condition={user} redirectPath="/">
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route
             path="/setting"
             element={

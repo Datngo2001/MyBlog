@@ -14,8 +14,9 @@ function Home() {
   const [articles, setArticles] = useState([]);
   const [paging, setPaging] = useState({
     page: 1,
-    limit: 10,
-    count: 0
+    limit: 5,
+    count: 0,
+    keyword: ''
   });
 
   const handleAddClick = () => {
@@ -23,19 +24,30 @@ function Home() {
   };
 
   useEffect(() => {
-    getArticles('', 1, 10)
+    getArticles('', paging.page, paging.limit)
       .then((res) => {
         setArticles(res.data.articles);
-        setPaging({ page: 1, limit: 10, count: res.data.count });
       })
       .catch((err) => console.log(err));
   }, []);
 
   const handleSubmit = (keyword) => {
-    getArticles(keyword, 1, 10)
+    getArticles(keyword, 1, paging.limit)
       .then((res) => {
         setArticles(res.data.articles);
-        setPaging({ page: 1, limit: 10, count: res.data.count });
+        setPaging((val) => ({ ...val, page: 1, count: res.data.count, keyword: keyword }));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handlePageChange = (page) => {
+    getArticles(paging.keyword, page, paging.limit)
+      .then((res) => {
+        setArticles(res.data.articles);
+        setPaging((val) => ({
+          ...val,
+          page: page
+        }));
       })
       .catch((err) => console.log(err));
   };
@@ -47,7 +59,7 @@ function Home() {
         {articles.map((article) => (
           <ArticleCard key={article._id} article={article}></ArticleCard>
         ))}
-        <Paging page={paging.page} count={paging.count} />
+        <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
       </Stack>
       {user && <AddFloatButton onClick={handleAddClick} />}
     </Container>
