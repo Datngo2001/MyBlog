@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import { LOAD_REQUEST } from '../../store/reducer/profile/profileActionTypes';
 import EditFloatButton from '../../components/EditFloatButton';
 import EditProfileModal from '../../components/modal/EditProfileModal';
+import ArticleOfAuthor from '../../components/ArticleOfAuthor';
 
 function Profile() {
   const { id } = useParams();
@@ -45,6 +46,7 @@ function Profile() {
               {profile.bio}
             </Typography>
             {id === user?._id ? <EditFloatButton onClick={handleEditOpen} /> : null}
+            <ArticleOfAuthor authorId={profile._id}></ArticleOfAuthor>
           </>
         )}
       </Stack>
