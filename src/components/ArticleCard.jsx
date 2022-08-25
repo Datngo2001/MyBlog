@@ -1,16 +1,8 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  IconButton,
-  Typography
-} from '@mui/material';
+import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
 import React from 'react';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { convertDate } from '../util/convertDate';
 import { useNavigate } from 'react-router';
+import FavoriteButton from './FavoriteButton';
 
 function ArticleCard({ article }) {
   const navigate = useNavigate();
@@ -46,11 +38,7 @@ function ArticleCard({ article }) {
             src={article.author.avatar}
             alt={article.author.username || 'avartar'}></Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
+        action={<FavoriteButton articleID={article._id}></FavoriteButton>}
         title={
           <Typography style={{ cursor: 'pointer' }} onClick={() => gotoAuthorProfile()}>
             {article.author.username || article.author.email}
