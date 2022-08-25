@@ -14,6 +14,7 @@ import EditArticle from './pages/EditArticle/EditArticle';
 import CreateArticle from './pages/CreateArticle/CreateArticle';
 import Navbar from './layout/Navbar';
 import ViewArticle from './pages/ViewArticle/ViewArticle';
+import Footer from './pages/Footer/Footer';
 
 const cookies = new Cookies();
 
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
