@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { LOAD_REQUEST } from '../../store/reducer/profile/profileActionTypes';
-import EditFloatButton from '../../components/EditFloatButton';
+import EditFloatButton from '../../components/FloatButton/EditFloatButton';
 import EditProfileModal from '../../components/modal/EditProfileModal';
 import ArticleOfAuthor from '../../components/ArticleOfAuthor';
+import FloatButtonContainer from '../../components/FloatButton/FloatButtonContainer';
 
 function Profile() {
   const { id } = useParams();
@@ -45,7 +46,11 @@ function Profile() {
             <Typography variant="body1" sx={{ margin: 'auto', textAlign: 'center' }}>
               {profile.bio}
             </Typography>
-            {id === user?._id ? <EditFloatButton onClick={handleEditOpen} /> : null}
+            {id === user?._id ? (
+              <FloatButtonContainer>
+                <EditFloatButton onClick={handleEditOpen} />
+              </FloatButtonContainer>
+            ) : null}
             <ArticleOfAuthor authorId={profile._id}></ArticleOfAuthor>
           </>
         )}

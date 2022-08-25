@@ -5,10 +5,12 @@ import { useNavigate, useParams } from 'react-router';
 import { deleteArticle, getArticleById } from '../../api/article';
 import { convertDate } from '../../util/convertDate';
 import styles from './view.module.css';
-import EditFloatButton from '../../components/EditFloatButton';
-import DeleteFloatButton from '../../components/DeleteFloatButton';
+import EditFloatButton from '../../components/FloatButton/EditFloatButton';
+import DeleteFloatButton from '../../components/FloatButton/DeleteFloatButton';
 import { useSelector } from 'react-redux';
 import ConfirmModal from '../../components/modal/ConfirmModal';
+import FloatButtonContainer from '../../components/FloatButton/FloatButtonContainer';
+import AddFloatButton from '../../components/FloatButton/AddFloatButton';
 
 function ViewArticle() {
   const { id } = useParams();
@@ -35,6 +37,10 @@ function ViewArticle() {
 
   const handleDeleteClick = () => {
     setOpen(true);
+  };
+
+  const handleAddClick = () => {
+    navigate(`/article/create`);
   };
 
   const handleAnswer = (result) => {
@@ -80,10 +86,11 @@ function ViewArticle() {
             </Stack>
           </Stack>
           {user?._id === article?.author._id ? (
-            <>
+            <FloatButtonContainer>
               <DeleteFloatButton onClick={handleDeleteClick} />
               <EditFloatButton onClick={handleEditClick} />
-            </>
+              <AddFloatButton onClick={handleAddClick} />
+            </FloatButtonContainer>
           ) : null}
         </>
       )}
