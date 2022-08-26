@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import ConfirmModal from '../../components/modal/ConfirmModal';
 import FloatButtonContainer from '../../components/FloatButton/FloatButtonContainer';
 import AddFloatButton from '../../components/FloatButton/AddFloatButton';
+import CommentContainer from '../../components/Comment/CommentContainer';
 
 function ViewArticle() {
   const { id } = useParams();
@@ -83,6 +84,7 @@ function ViewArticle() {
               <Typography variant="body1" sx={{ lineHeight: 2, textAlign: 'justify' }}>
                 <div dangerouslySetInnerHTML={{ __html: article?.content }} />
               </Typography>
+              <CommentContainer article={article}></CommentContainer>
             </Stack>
           </Stack>
           {user?._id === article?.author._id ? (
