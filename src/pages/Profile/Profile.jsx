@@ -1,13 +1,14 @@
-import { Avatar, CircularProgress, Container, Typography } from '@mui/material';
+import { Avatar, Button, CircularProgress, Container, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { LOAD_REQUEST } from '../../store/reducer/profile/profileActionTypes';
 import EditFloatButton from '../../components/FloatButton/EditFloatButton';
 import EditProfileModal from '../../components/modal/EditProfileModal';
 import ArticleOfAuthor from '../../components/ArticleOfAuthor';
 import FloatButtonContainer from '../../components/FloatButton/FloatButtonContainer';
+import Favorite from '@mui/icons-material/Favorite';
 
 function Profile() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ function Profile() {
   const { profile } = useSelector((state) => state.profile);
   const { user } = useSelector((state) => state.user);
   const [showEdit, setShowEdit] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({ type: LOAD_REQUEST, payload: id });
@@ -26,6 +28,10 @@ function Profile() {
 
   const handleEditClose = () => {
     setShowEdit(false);
+  };
+
+  const handleFavoriteClick = () => {
+    navigate(`/profile/${id}/favorite`);
   };
 
   return (
@@ -46,6 +52,15 @@ function Profile() {
             <Typography variant="body1" sx={{ margin: 'auto', textAlign: 'center' }}>
               {profile.bio}
             </Typography>
+            <Container sx={{ textAlign: 'center' }}>
+              <Button
+                variant="contained"
+                color="error"
+                startIcon={<Favorite />}
+                onClick={handleFavoriteClick}>
+                Favorite
+              </Button>
+            </Container>
             {id === user?._id ? (
               <FloatButtonContainer>
                 <EditFloatButton onClick={handleEditOpen} />
