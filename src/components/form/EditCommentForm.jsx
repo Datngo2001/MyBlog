@@ -22,6 +22,7 @@ function EditCommentForm({ content, handleSubmit, handleCancel, mode = 'edit' })
     }
     setFormError('');
     handleSubmit(inputs);
+    setInputs('');
   };
 
   return (

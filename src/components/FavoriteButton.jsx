@@ -10,6 +10,7 @@ function FavoriteButton({ articleID }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
+    if (!user) return;
     getFavoritedByArticle(articleID)
       .then((res) => {
         if (res.data) {
@@ -20,22 +21,12 @@ function FavoriteButton({ articleID }) {
   }, []);
 
   const handleFavoriteClick = () => {
+    if (!user) return;
+    setIsFavorite((val) => !val);
     if (isFavorite) {
-      deleteFavorited(articleID)
-        .then((res) => {
-          if (res.data) {
-            setIsFavorite(false);
-          }
-        })
-        .catch((err) => console.log(err));
+      deleteFavorited(articleID).catch((err) => console.log(err));
     } else {
-      postFavorited(articleID)
-        .then((res) => {
-          if (res.data) {
-            setIsFavorite(true);
-          }
-        })
-        .catch((err) => console.log(err));
+      postFavorited(articleID).catch((err) => console.log(err));
     }
   };
 

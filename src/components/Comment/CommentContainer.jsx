@@ -4,6 +4,7 @@ import Comment from './Comment';
 import { deleteComment, getCommentByArticle, postComment, putComment } from '../../api/comment';
 import EditCommentForm from '../form/EditCommentForm';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function CommentContainer({ article }) {
   const { user } = useSelector((state) => state.user);
@@ -51,7 +52,13 @@ function CommentContainer({ article }) {
 
   return (
     <Stack spacing={2}>
-      <EditCommentForm content={''} mode="create" handleSubmit={handlePost}></EditCommentForm>
+      {user ? (
+        <EditCommentForm content={''} mode="create" handleSubmit={handlePost}></EditCommentForm>
+      ) : (
+        <div style={{ textAlign: 'center' }}>
+          Login to write your comment. <Link to={'/login'}>login</Link>
+        </div>
+      )}
       {comments.map((comment) => (
         <Comment
           key={comment._id}
