@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { getProfile, putProfile } from "../../../api/user";
 import { LOAD_FAILURE, LOAD_SUCCESS, UPDATE_FAILURE, UPDATE_SUCCESS } from "./profileActionTypes";
+import { RESTORE_USER } from '../../reducer/user/userActionTypes'
 
 export function* loadProfile({ payload }) {
     try {
@@ -22,6 +23,10 @@ export function* updateProfile({ payload }) {
         const res = yield call(putProfile, payload)
         yield put({
             type: UPDATE_SUCCESS,
+            payload: res.data
+        })
+        yield put({
+            type: RESTORE_USER,
             payload: res.data
         })
     } catch (error) {
