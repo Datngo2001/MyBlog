@@ -27,7 +27,7 @@ function Favorite() {
   const handlePageChange = (page) => {
     getFavoritedArticle(id, page, paging.limit)
       .then((res) => {
-        setArticles(getArticle(res.data.articles));
+        setArticles(getArticle(res.data.favorites));
         setPaging((val) => ({
           ...val,
           page: page
