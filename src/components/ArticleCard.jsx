@@ -21,6 +21,7 @@ function ArticleCard({ article }) {
         style={{ cursor: 'pointer', borderBottom: '1px solid #f2f2f2' }}
         onClick={handleCardClick}>
         <CardMedia
+          loading="lazy"
           component="img"
           height="250"
           image={article.thumbnail}

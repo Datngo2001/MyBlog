@@ -8,6 +8,7 @@ import ArticleSearchForm from '../../components/form/ArticleSearchForm';
 import Paging from '../../components/Paging/Paging';
 import FloatButtonContainer from '../../components/FloatButton/FloatButtonContainer';
 import { useNavigate } from 'react-router';
+import { CircularProgress } from '@mui/material';
 
 function Home() {
   const navigate = useNavigate();
@@ -19,26 +20,32 @@ function Home() {
     count: 0,
     keyword: ''
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getArticles('', paging.page, paging.limit)
       .then((res) => {
         setArticles(res.data.articles);
         setPaging((val) => ({ ...val, count: res.data.count }));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, []);
 
   const handleSubmit = (keyword) => {
+    setLoading(true);
     getArticles(keyword, 1, paging.limit)
       .then((res) => {
         setArticles(res.data.articles);
         setPaging((val) => ({ ...val, page: 1, count: res.data.count, keyword: keyword }));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   const handlePageChange = (page) => {
+    setLoading(true);
     getArticles(paging.keyword, page, paging.limit)
       .then((res) => {
         setArticles(res.data.articles);
@@ -47,7 +54,8 @@ function Home() {
           page: page
         }));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   const handleAddClick = () => {
@@ -58,6 +66,7 @@ function Home() {
     <Container maxWidth="sm" sx={{ paddingTop: 5 }}>
       <Stack spacing={4}>
         <ArticleSearchForm handleSubmit={handleSubmit} />
+        {loading && <CircularProgress sx={{ margin: 'auto' }} />}
         {articles.map((article) => (
           <ArticleCard key={article._id} article={article}></ArticleCard>
         ))}
