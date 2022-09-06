@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getArticlesByAuthor } from '../api/article';
 import ArticleCard from './ArticleCard';
@@ -46,11 +46,17 @@ function ArticleOfAuthor({ authorId }) {
 
   return (
     <Stack spacing={4}>
-      <ArticleSearchForm handleSubmit={handleSubmit} />
-      {articles.map((article) => (
-        <ArticleCard key={article._id} article={article}></ArticleCard>
-      ))}
-      <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
+      {articles.length == 0 ? (
+        <Box sx={{ typography: 'h5', textAlign: 'center' }}>User has no article yet!</Box>
+      ) : (
+        <>
+          <ArticleSearchForm handleSubmit={handleSubmit} />
+          {articles.map((article) => (
+            <ArticleCard key={article._id} article={article}></ArticleCard>
+          ))}
+          <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
+        </>
+      )}
     </Stack>
   );
 }

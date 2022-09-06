@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { Container } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -43,10 +43,18 @@ function Favorite() {
   return (
     <Container maxWidth="sm" sx={{ marginTop: 10 }}>
       <Stack spacing={4}>
-        {articles.map((article) => (
-          <ArticleCard key={article._id} article={article}></ArticleCard>
-        ))}
-        <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
+        {articles.length == 0 ? (
+          <Box sx={{ typography: 'h5', textAlign: 'center' }}>
+            User has no favorited article yet!
+          </Box>
+        ) : (
+          <>
+            {articles.map((article) => (
+              <ArticleCard key={article._id} article={article}></ArticleCard>
+            ))}
+            <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
+          </>
+        )}
       </Stack>
     </Container>
   );
