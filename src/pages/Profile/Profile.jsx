@@ -20,7 +20,7 @@ function Profile() {
 
   useEffect(() => {
     dispatch({ type: LOAD_REQUEST, payload: id });
-  }, []);
+  }, [dispatch, id]);
 
   const handleEditOpen = () => {
     setShowEdit(true);

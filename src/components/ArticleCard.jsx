@@ -20,12 +20,13 @@ function ArticleCard({ article }) {
       <div
         style={{ cursor: 'pointer', borderBottom: '1px solid #f2f2f2' }}
         onClick={handleCardClick}>
-        <CardMedia
-          loading="lazy"
-          component="img"
-          height="250"
-          image={article.thumbnail}
-          alt={article.title}></CardMedia>
+        <CardMedia>
+          <img
+            style={{ width: '100%', height: '250px', objectFit: 'cover' }}
+            loading="lazy"
+            src={article.thumbnail}
+            alt={article.title}></img>
+        </CardMedia>
         <CardContent>
           <Typography variant="h5">{article.title}</Typography>
           <Typography variant="body1">{article.subtitle}</Typography>
