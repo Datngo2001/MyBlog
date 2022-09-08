@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Update NPM
-          command: "sudo npm install -g npm"
+          command: 'sudo npm install -g npm'
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
@@ -19,14 +19,11 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Test React App
-          command: npm run test
-      - run:
           name: Build React App
           command: npm run build
       - run:
-          name: "Deploy app to Firebase Hosting"
-          command: "./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN"
+          name: 'Deploy app to Firebase Hosting'
+          command: './node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN'
 
 workflows:
   build_and_deploy:
