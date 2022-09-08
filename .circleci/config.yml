@@ -19,6 +19,9 @@ jobs:
           paths:
             - ./node_modules
       - run:
+          name: Run Lint
+          command: npm run lint
+      - run:
           name: Build React App
           command: npm run build
       - run:

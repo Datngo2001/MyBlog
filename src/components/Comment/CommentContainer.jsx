@@ -16,7 +16,7 @@ function CommentContainer({ article }) {
         setComments(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [article?._id]);
 
   const handleEdit = (id, content) => {
     putComment(id, content)

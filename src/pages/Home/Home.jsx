@@ -31,7 +31,7 @@ function Home() {
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
-  }, []);
+  }, [paging.limit, paging.page]);
 
   const handleSubmit = (keyword) => {
     setLoading(true);

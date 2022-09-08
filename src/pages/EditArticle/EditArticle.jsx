@@ -18,7 +18,7 @@ function EditArticle() {
         setCurrent(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const handleSubmit = (data) => {
     setLoading(true);

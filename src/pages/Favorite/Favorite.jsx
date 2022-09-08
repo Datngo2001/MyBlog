@@ -22,7 +22,7 @@ function Favorite() {
         setPaging((val) => ({ ...val, count: res.data.count }));
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id, paging.limit, paging.page]);
 
   const handlePageChange = (page) => {
     getFavoritedArticle(id, page, paging.limit)

@@ -18,7 +18,7 @@ function FavoriteButton({ articleID }) {
         }
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [articleID, user]);
 
   const handleFavoriteClick = () => {
     if (!user) return;

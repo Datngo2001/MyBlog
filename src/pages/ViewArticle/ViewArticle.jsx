@@ -26,7 +26,7 @@ function ViewArticle() {
         setArticle(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const gotoAuthorProfile = () => {
     navigate(`/profile/${article.author._id}`);
