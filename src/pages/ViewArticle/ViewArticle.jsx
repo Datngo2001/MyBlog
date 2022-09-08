@@ -1,4 +1,4 @@
-import { Avatar, Typography } from '@mui/material';
+import { Avatar, CircularProgress, Typography } from '@mui/material';
 import { Container, Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
@@ -57,7 +57,7 @@ function ViewArticle() {
 
   return (
     <Container maxWidth="sm">
-      {article && (
+      {article ? (
         <>
           <Stack spacing={2} alignItems={'center'} sx={{ marginTop: 2 }}>
             <img
@@ -95,6 +95,10 @@ function ViewArticle() {
             </FloatButtonContainer>
           ) : null}
         </>
+      ) : (
+        <div style={{ margin: 'auto', marginTop: '30px', textAlign: 'center' }}>
+          <CircularProgress />
+        </div>
       )}
       <ConfirmModal
         message={'Are you sure to delete article?'}

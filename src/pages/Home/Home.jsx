@@ -66,10 +66,11 @@ function Home() {
     <Container maxWidth="sm" sx={{ paddingTop: 5 }}>
       <Stack spacing={4}>
         <ArticleSearchForm handleSubmit={handleSubmit} />
-        {loading && <CircularProgress sx={{ margin: 'auto' }} />}
-        {articles.map((article) => (
-          <ArticleCard key={article._id} article={article}></ArticleCard>
-        ))}
+        <div style={{ textAlign: 'center' }}>{loading && <CircularProgress />}</div>
+        {!loading &&
+          articles.map((article) => (
+            <ArticleCard key={article._id} article={article}></ArticleCard>
+          ))}
         <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
       </Stack>
       {user && (

@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, CircularProgress, Stack } from '@mui/material';
 import { Container } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -8,7 +8,7 @@ import Paging from '../../components/Paging/Paging';
 
 function Favorite() {
   const { id } = useParams();
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState();
   const [paging, setPaging] = useState({
     page: 1,
     limit: 5,
@@ -40,21 +40,27 @@ function Favorite() {
     return favorites.map((favorite) => favorite.article);
   };
 
+  const renderArticle = () => {
+    if (articles.length == 0) {
+      return (
+        <Box sx={{ typography: 'h5', textAlign: 'center' }}>User has no favorited article yet!</Box>
+      );
+    } else {
+      return (
+        <>
+          {articles.map((article) => (
+            <ArticleCard key={article._id} article={article}></ArticleCard>
+          ))}
+          <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
+        </>
+      );
+    }
+  };
+
   return (
     <Container maxWidth="sm" sx={{ marginTop: 10 }}>
       <Stack spacing={4}>
-        {articles.length == 0 ? (
-          <Box sx={{ typography: 'h5', textAlign: 'center' }}>
-            User has no favorited article yet!
-          </Box>
-        ) : (
-          <>
-            {articles.map((article) => (
-              <ArticleCard key={article._id} article={article}></ArticleCard>
-            ))}
-            <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
-          </>
-        )}
+        {articles ? renderArticle() : <CircularProgress sx={{ margin: 'auto' }} />}
       </Stack>
     </Container>
   );
