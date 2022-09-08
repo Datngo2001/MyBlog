@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 function EditCommentForm({ content, handleSubmit, handleCancel, mode = 'edit' }) {
   const [inputs, setInputs] = useState(content);
+  const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState();
 
   const handleChange = (event) => {
@@ -23,6 +24,10 @@ function EditCommentForm({ content, handleSubmit, handleCancel, mode = 'edit' })
     setFormError('');
     handleSubmit(inputs);
     setInputs('');
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   return (
@@ -40,11 +45,11 @@ function EditCommentForm({ content, handleSubmit, handleCancel, mode = 'edit' })
         {formError && <p style={{ color: 'red' }}>{formError}</p>}
         <div style={{ textAlign: 'end' }}>
           {mode == 'edit' ? (
-            <Button variant="text" onClick={handleCancel}>
+            <Button disabled={loading} variant="text" onClick={handleCancel}>
               Cancel
             </Button>
           ) : null}
-          <Button type="submit" variant="contained">
+          <Button disabled={loading} type="submit" variant="contained">
             {mode == 'edit' ? 'Save' : 'Post'}
           </Button>
         </div>

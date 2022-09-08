@@ -14,6 +14,7 @@ function Favorite() {
     limit: 5,
     count: 0
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getFavoritedArticle(id, paging.page, paging.limit)
@@ -25,6 +26,7 @@ function Favorite() {
   }, [id, paging.limit, paging.page]);
 
   const handlePageChange = (page) => {
+    setLoading(true);
     getFavoritedArticle(id, page, paging.limit)
       .then((res) => {
         setArticles(getArticle(res.data.favorites));
@@ -33,7 +35,8 @@ function Favorite() {
           page: page
         }));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   const getArticle = (favorites) => {
@@ -48,9 +51,11 @@ function Favorite() {
     } else {
       return (
         <>
-          {articles.map((article) => (
-            <ArticleCard key={article._id} article={article}></ArticleCard>
-          ))}
+          {!loading &&
+            articles.map((article) => (
+              <ArticleCard key={article._id} article={article}></ArticleCard>
+            ))}
+          {loading && <CircularProgress sx={{ margin: 'auto' }} />}
           <Paging page={paging.page} count={paging.count} onPageChange={handlePageChange} />
         </>
       );
